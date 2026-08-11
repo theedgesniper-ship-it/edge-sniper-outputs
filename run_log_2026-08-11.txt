@@ -1,0 +1,18 @@
+Edge Sniper MLB Analysis — 2026-08-11
+Status: FAILED — Network Egress Policy Blocking
+
+Attempted data sources (all returned 403 from egress proxy):
+  - statsapi.mlb.com        (MLB Stats API — primary source)
+  - site.api.espn.com       (ESPN API — fallback)
+  - www.mlb.com             (MLB.com probable pitchers page)
+  - www.baseballreference.com
+  - www.rotowire.com
+
+Root cause: The network egress policy for this Claude Code on the web session
+does not permit outbound connections to any sports data APIs. Previous runs
+through 2026-08-10 succeeded, indicating a policy change after that date.
+
+No matchup HTML was generated for 2026-08-11.
+
+Resolution: Allow statsapi.mlb.com in the environment network policy.
+See https://code.claude.com/docs/en/claude-code-on-the-web for policy configuration.
