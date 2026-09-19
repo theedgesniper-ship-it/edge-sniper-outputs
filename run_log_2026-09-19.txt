@@ -1,0 +1,36 @@
+Edge Sniper MLB Analysis — 2026-09-19
+Status: FAILED — Network Egress Policy Blocking (6th consecutive occurrence)
+
+Attempted data sources:
+  - statsapi.mlb.com        (MLB Stats API — primary source)
+    Result: 403 from egress proxy (connect_rejected)
+    Proxy detail: "gateway answered 403 to CONNECT (policy denial or upstream failure)"
+
+Root cause: The network egress policy for this Claude Code on the web session
+does not permit outbound connections to statsapi.mlb.com. This issue has now
+recurred on: 2026-08-11, 2026-08-21, 2026-08-30, 2026-09-15, 2026-09-18, 2026-09-19.
+
+The session's proxy runs in selective=false mode with all external traffic
+filtered. statsapi.mlb.com:443 is explicitly rejected at the gateway level.
+
+Last successful run: 2026-09-17 (edge_sniper_matchups_2026-09-17.html)
+Note: 2026-09-16 and 2026-09-17 files are present (pushed Sept 19), so the
+      API was accessible in that run window, but today's session cannot reach it.
+
+No matchup HTML was generated for 2026-09-19.
+
+IMPORTANT — This is a critical recurring failure with no workaround available
+from within the agent session. The proxy policy denial (403) must be resolved
+at the environment configuration level.
+
+Resolution required:
+  1. Go to https://code.claude.com/docs/en/claude-code-on-the-web
+  2. Edit this session's environment network policy to allow:
+       statsapi.mlb.com (port 443)
+  3. Re-run the scheduled task after updating the policy.
+
+Proxy status at time of failure:
+  - selective: false
+  - bundleCoversEveryHost: true
+  - Recent relay failure: statsapi.mlb.com:443 — connect_rejected
+    "gateway answered 403 to CONNECT (policy denial or upstream failure)"
