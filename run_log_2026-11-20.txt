@@ -1,0 +1,15 @@
+Edge Sniper MLB Run Log — 2026-11-20
+=====================================
+Status: NO GAMES / OFFSEASON
+
+Today is 2026-11-20 (November 20, 2026).
+The MLB regular season and postseason have concluded for 2026.
+No games are scheduled during the offseason.
+
+Additionally, the MLB Stats API (statsapi.mlb.com) is blocked
+by the current network policy (403 CONNECT rejected), preventing
+data fetching even if games were scheduled.
+
+No HTML matchup file was generated for this date.
+Next expected run: Spring Training / Opening Day 2027 (~March 2027)
+
